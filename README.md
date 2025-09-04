@@ -1,2 +1,67 @@
-# markitdown-api
-Python API for the Microsoft Markitdown package.
+﻿# MarkItDown REST API Docker Container
+
+A containerized REST API for Microsoft's MarkItDown library that converts various document formats to Markdown.
+
+## Features
+
+- Convert documents to Markdown via REST API
+- Support for PDF, DOCX, PPTX, XLSX, images, HTML, and more
+- Docker containerized for easy deployment
+- FastAPI with automatic API documentation
+- File upload and URL conversion support
+
+## Quick Start
+
+1. **Build and run with the script:**
+   ```bash
+   chmod +x build_and_run.sh
+   ./build_and_run.sh
+   ```
+
+2. **Or use Docker Compose:**
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Or build manually:**
+   ```bash
+   docker build -t markitdown-api .
+   docker run -p 8000:8000 markitdown-api
+   ```
+
+## API Endpoints
+
+- `GET /` - Health check
+- `POST /convert` - Upload file for conversion
+- `POST /convert-url` - Convert document from URL
+- `GET /supported-formats` - List supported formats
+- `GET /docs` - Interactive API documentation
+
+## Usage Examples
+
+**Upload file conversion:**
+```bash
+curl -X POST "http://localhost:8000/convert" \
+     -H "accept: application/json" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@example.pdf"
+```
+
+**URL conversion:**
+```bash
+curl -X POST "http://localhost:8000/convert-url" \
+     -H "accept: application/json" \
+     -H "Content-Type: application/json" \
+     -d '{"url": "https://example.com/document.pdf"}'
+```
+
+## Configuration
+
+- Port: 8000 (configurable)
+- Max file size: 50MB
+- Supported formats: PDF, Office docs, images, HTML, and more
+
+## Requirements
+
+- Docker
+- 2GB+ RAM recommended for processing large documents
