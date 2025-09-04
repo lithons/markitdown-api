@@ -8,7 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace MyCompany.PythonApi.Health
+namespace Lithons.PythonApi.Health
 {
     /// <summary>
     /// Builds and executes requests for operations under \health
@@ -17,7 +17,7 @@ namespace MyCompany.PythonApi.Health
     public partial class HealthRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::MyCompany.PythonApi.Health.HealthRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Lithons.PythonApi.Health.HealthRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
@@ -25,7 +25,7 @@ namespace MyCompany.PythonApi.Health
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::MyCompany.PythonApi.Health.HealthRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Lithons.PythonApi.Health.HealthRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
@@ -72,11 +72,11 @@ namespace MyCompany.PythonApi.Health
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::MyCompany.PythonApi.Health.HealthRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Lithons.PythonApi.Health.HealthRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::MyCompany.PythonApi.Health.HealthRequestBuilder WithUrl(string rawUrl)
+        public global::Lithons.PythonApi.Health.HealthRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::MyCompany.PythonApi.Health.HealthRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Lithons.PythonApi.Health.HealthRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
