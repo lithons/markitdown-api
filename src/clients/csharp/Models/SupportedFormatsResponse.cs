@@ -5,7 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace MyCompany.PythonApi.Models
+namespace Lithons.PythonApi.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
@@ -17,10 +17,10 @@ namespace MyCompany.PythonApi.Models
         /// <summary>The note property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note? Note { get; set; }
+        public global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note? Note { get; set; }
 #nullable restore
 #else
-        public global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note Note { get; set; }
+        public global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note Note { get; set; }
 #endif
         /// <summary>The supported_formats property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +31,7 @@ namespace MyCompany.PythonApi.Models
         public List<string> SupportedFormats { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse"/> and sets the default values.
         /// </summary>
         public SupportedFormatsResponse()
         {
@@ -40,12 +40,12 @@ namespace MyCompany.PythonApi.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse"/></returns>
+        /// <returns>A <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::MyCompany.PythonApi.Models.SupportedFormatsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Lithons.PythonApi.Models.SupportedFormatsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new global::MyCompany.PythonApi.Models.SupportedFormatsResponse();
+            return new global::Lithons.PythonApi.Models.SupportedFormatsResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace MyCompany.PythonApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "note", n => { Note = n.GetObjectValue<global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note>(global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note.CreateFromDiscriminatorValue); } },
+                { "note", n => { Note = n.GetObjectValue<global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note>(global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note.CreateFromDiscriminatorValue); } },
                 { "supported_formats", n => { SupportedFormats = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -66,12 +66,12 @@ namespace MyCompany.PythonApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note>("note", Note);
+            writer.WriteObjectValue<global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note>("note", Note);
             writer.WriteCollectionOfPrimitiveValues<string>("supported_formats", SupportedFormats);
             writer.WriteAdditionalData(AdditionalData);
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1"/>, <see cref="string"/>
+        /// Composed type wrapper for classes <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SupportedFormatsResponse_note : IComposedTypeWrapper, IParsable
@@ -84,29 +84,29 @@ namespace MyCompany.PythonApi.Models
 #else
             public string String { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1? SupportedFormatsResponseNoteMember1 { get; set; }
+            public global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1? SupportedFormatsResponseNoteMember1 { get; set; }
 #nullable restore
 #else
-            public global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1 SupportedFormatsResponseNoteMember1 { get; set; }
+            public global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1 SupportedFormatsResponseNoteMember1 { get; set; }
 #endif
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
-            /// <returns>A <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note"/></returns>
+            /// <returns>A <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note"/></returns>
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note CreateFromDiscriminatorValue(IParseNode parseNode)
+            public static global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::MyCompany.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note();
+                var result = new global::Lithons.PythonApi.Models.SupportedFormatsResponse.SupportedFormatsResponse_note();
                 if(parseNode.GetStringValue() is string stringValue)
                 {
                     result.String = stringValue;
                 }
                 else {
-                    result.SupportedFormatsResponseNoteMember1 = new global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1();
+                    result.SupportedFormatsResponseNoteMember1 = new global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1();
                 }
                 return result;
             }
@@ -134,7 +134,7 @@ namespace MyCompany.PythonApi.Models
                     writer.WriteStringValue(null, String);
                 }
                 else {
-                    writer.WriteObjectValue<global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1>(null, SupportedFormatsResponseNoteMember1);
+                    writer.WriteObjectValue<global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1>(null, SupportedFormatsResponseNoteMember1);
                 }
             }
         }

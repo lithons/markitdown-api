@@ -5,7 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace MyCompany.PythonApi.Models
+namespace Lithons.PythonApi.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
@@ -15,7 +15,7 @@ namespace MyCompany.PythonApi.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1"/> and sets the default values.
         /// </summary>
         public SupportedFormatsResponse_noteMember1()
         {
@@ -24,12 +24,12 @@ namespace MyCompany.PythonApi.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1"/></returns>
+        /// <returns>A <see cref="global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new global::MyCompany.PythonApi.Models.SupportedFormatsResponse_noteMember1();
+            return new global::Lithons.PythonApi.Models.SupportedFormatsResponse_noteMember1();
         }
         /// <summary>
         /// The deserialization information for the current model

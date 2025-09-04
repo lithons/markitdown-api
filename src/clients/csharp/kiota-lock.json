@@ -5,7 +5,7 @@
   "kiotaVersion": "1.28.0",
   "clientClassName": "PythonApiClient",
   "typeAccessModifier": "Public",
-  "clientNamespaceName": "MyCompany.PythonApi",
+  "clientNamespaceName": "Lithons.PythonApi",
   "language": "CSharp",
   "usesBackingStore": false,
   "excludeBackwardCompatible": false,
