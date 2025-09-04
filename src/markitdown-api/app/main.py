@@ -58,6 +58,10 @@ async def scalar_html(request: Request):
 async def root():
     return {"message": f"{settings.APP_NAME} is running.", "env": settings.ENV}
 
+@app.get("/temp")
+async def temp():
+    return {"message": f"{settings.APP_NAME} is running.", "env": settings.ENV}
+
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "service": settings.APP_NAME}

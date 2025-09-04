@@ -124,6 +124,22 @@
         }
       }
     },
+    "/temp": {
+      "get": {
+        "summary": "Temp",
+        "operationId": "temp_temp_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/health": {
       "get": {
         "summary": "Health Check",
