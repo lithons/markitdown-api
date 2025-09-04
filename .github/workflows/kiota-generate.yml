@@ -1,4 +1,4 @@
-name: Generate C# client with Kiota
+name: Generate Kiota clients
 
 on:
   push:
@@ -17,6 +17,18 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - lang: CSharp
+            client_class: PythonApiClient
+            namespace: Lithons.PythonApi
+            output: src/clients/csharp
+          - lang: TypeScript
+            client_class: PythonApiClient
+            # For TS, this is the module name. Avoid dots in package/module names.
+            namespace: LithonsPythonApi
+            output: src/clients/typescript
 
     steps:
       - name: Checkout
@@ -24,25 +36,34 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Installs the Kiota CLI in the PATH as `kiota`
       - name: Setup Kiota
-        uses: microsoft/setup-kiota@v0
+        uses: microsoft/setup-kiota@v0.5.0
 
-      - name: Generate client
+      - name: Generate ${{ matrix.lang }} client
         run: |
           kiota generate \
             -d src/markitdown-api/openapi.json \
-            -l CSharp \
-            -c PythonApiClient \
-            -n Lithons.PythonApi \
-            -o src/clients/csharp
+            -l ${{ matrix.lang }} \
+            -c ${{ matrix.client_class }} \
+            -n ${{ matrix.namespace }} \
+            -o ${{ matrix.output }}
 
-      # Only auto-commit on push; on PRs we just validate generation
-      - name: Commit changes
+      # On PRs: ensure the repo stays clean (fail if generation produces changes)
+      - name: Verify no diff on PRs
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated clients are out of date. Push a change to openapi.json or run the workflow on main."
+            git status --porcelain
+            exit 1
+          fi
+
+      # On pushes to main: auto-commit the regenerated clients
+      - name: Commit generated clients
         if: ${{ github.event_name == 'push' }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(kiota): regenerate C# client from openapi.json"
+          commit_message: "chore(kiota): regenerate clients (CSharp & TypeScript)"
           file_pattern: |
             src/clients/csharp/**
-            src/markitdown-api/openapi.json
+            src/clients/typescript/**
