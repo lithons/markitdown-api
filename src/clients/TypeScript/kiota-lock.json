@@ -6,7 +6,7 @@
   "clientClassName": "PythonApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Lithons.PythonApi",
-  "language": "CSharp",
+  "language": "TypeScript",
   "usesBackingStore": false,
   "excludeBackwardCompatible": false,
   "includeAdditionalData": true,
