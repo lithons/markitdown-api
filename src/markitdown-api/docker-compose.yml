@@ -1,0 +1,11 @@
+﻿services:
+  markitdown-api:
+    image: yourrepo/markitdown:latest
+    environment:
+      ENV: "production"
+      PUBLIC_BASE_URL: "https://api.example.com"
+    ports:
+      - "8000:8000"
+    command: >
+      gunicorn -k uvicorn.workers.UvicornWorker -w 4
+      -b 0.0.0.0:8000 app.main:app
