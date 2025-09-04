@@ -1,0 +1,48 @@
+name: Generate C# client with Kiota
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/markitdown-api/openapi.json"
+  pull_request:
+    paths:
+      - "src/markitdown-api/openapi.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Installs the Kiota CLI in the PATH as `kiota`
+      - name: Setup Kiota
+        uses: microsoft/setup-kiota@v0
+
+      - name: Generate client
+        run: |
+          kiota generate \
+            -d src/markitdown-api/openapi.json \
+            -l CSharp \
+            -c PythonApiClient \
+            -n Lithons.PythonApi \
+            -o src/clients/csharp
+
+      # Only auto-commit on push; on PRs we just validate generation
+      - name: Commit changes
+        if: ${{ github.event_name == 'push' }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(kiota): regenerate C# client from openapi.json"
+          file_pattern: |
+            src/clients/csharp/**
+            src/markitdown-api/openapi.json
