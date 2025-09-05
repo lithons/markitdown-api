@@ -94,7 +94,7 @@ Prerequisites: Install the Kiota CLI. You can install it locally or rely on the 
 
 Generate both C# and TypeScript clients in one command (also regenerates openapi.json by default):
 ```bash
-# From the repo root
+# From the app root ./src/markitdown-api
 python -m app.tools.generate_clients
 
 # Optionally include a server URL in the OpenAPI 'servers' section

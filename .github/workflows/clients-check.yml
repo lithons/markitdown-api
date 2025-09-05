@@ -11,11 +11,11 @@ jobs:
       matrix:
         include:
           - lang: CSharp
-            client_class: PythonApiClient
+            client_class: MarkItDownApiClient
             namespace: Lithons.MarkItDown
             output: src/clients/csharp
           - lang: TypeScript
-            client_class: PythonApiClient
+            client_class: MarkItDownApiClient
             namespace: MarkItDown
             output: src/clients/TypeScript
     steps:

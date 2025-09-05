@@ -50,8 +50,8 @@ def generate_clients(openapi_path: Path, kiota_cmd: str, csharp_out: Path, ts_ou
         "generate",
         "-d", str(openapi_path),
         "-l", "CSharp",
-        "-c", "PythonApiClient",
-        "-n", "Lithons.PythonApi",
+        "-c", "MarkItDownApiClient",
+        "-n", "Lithons.MarkItDown",
         "-o", str(csharp_out),
     ])
     # TypeScript
@@ -61,8 +61,8 @@ def generate_clients(openapi_path: Path, kiota_cmd: str, csharp_out: Path, ts_ou
         "generate",
         "-d", str(openapi_path),
         "-l", "TypeScript",
-        "-c", "PythonApiClient",
-        "-n", "LithonsPythonApi",
+        "-c", "MarkItDownApiClient",
+        "-n", "Lithons",
         "-o", str(ts_out),
     ])
 
