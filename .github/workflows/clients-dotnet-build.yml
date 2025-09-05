@@ -1,0 +1,67 @@
+﻿name: Build .NET Client Package
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'src/clients/csharp/**'
+      - '.github/workflows/clients-dotnet-build.yml'
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'src/clients/csharp/**'
+      - '.github/workflows/clients-dotnet-build.yml'
+
+jobs:
+  build-dotnet-client:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/clients/csharp
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            9.0.x
+
+      - name: Restore
+        run: dotnet restore MarkItDown.csproj
+
+      - name: Calculate version suffix
+        id: ver
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            SHA=${GITHUB_SHA::7}
+            echo "suffix=pr-$PR_NUMBER-$SHA" >> $GITHUB_OUTPUT
+            echo "is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            DATE=$(date -u +"%Y%m%d-%H%M")
+            SHA=${GITHUB_SHA::7}
+            echo "suffix=$DATE-$SHA" >> $GITHUB_OUTPUT
+            echo "is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build
+        run: dotnet build MarkItDown.csproj -c Release /p:VersionSuffix=${{ steps.ver.outputs.suffix }}
+
+      - name: Pack
+        run: dotnet pack MarkItDown.csproj -c Release -o ./nupkgs /p:IncludeSymbols=false /p:VersionSuffix=${{ steps.ver.outputs.suffix }}
+
+      - name: Upload artifact (nupkg)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: csharp-client-nuget-${{ steps.ver.outputs.date }}-${{ steps.ver.outputs.sha }}
+          path: src/clients/csharp/nupkgs/*.nupkg
+          if-no-files-found: error
+
+      - name: Validate build only on PR
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Build succeeded for PR. No artifact uploaded."

@@ -120,7 +120,7 @@ python -m app.tools.generate_clients --skip-openapi --openapi ../openapi.json
 
 Generate only C# client:
 ```bash
-kiota generate -d src/markitdown-api/openapi.json -l CSharp -c MarkItDownApiClient -n Lithons.MarkItDown -o src/clients/csharp
+kiota generate -d src/markitdown-api/openapi.json -l CSharp -c MarkItDownApiClient -n Lithons.MarkItDown -o src/clients/csharp/Generated
 ```
 
 Generate only TypeScript client:

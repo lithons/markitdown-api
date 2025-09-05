@@ -13,7 +13,7 @@ jobs:
           - lang: CSharp
             client_class: MarkItDownApiClient
             namespace: Lithons.MarkItDown
-            output: src/clients/csharp
+            output: src/clients/csharp/Generated
           - lang: TypeScript
             client_class: MarkItDownApiClient
             namespace: Lithons
@@ -50,7 +50,8 @@ jobs:
             -l ${{ matrix.lang }} \
             -c ${{ matrix.client_class }} \
             -n ${{ matrix.namespace }} \
-            -o ${{ matrix.output }}
+            -o ${{ matrix.output }} \
+            --exclude-backward-compatible
 
       - name: Check that clients have been re-generated if needed
         run: |

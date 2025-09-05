@@ -12,7 +12,7 @@ from . import generate_openapi as go
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OPENAPI_PATH = REPO_ROOT / "openapi.json"
-DEFAULT_CSHARP_OUT = REPO_ROOT.parent / "clients" / "csharp"
+DEFAULT_CSHARP_OUT = REPO_ROOT.parent / "clients" / "csharp" / "Generated"
 DEFAULT_TS_OUT = REPO_ROOT.parent / "clients" / "TypeScript"
 
 
@@ -53,6 +53,8 @@ def generate_clients(openapi_path: Path, kiota_cmd: str, csharp_out: Path, ts_ou
         "-c", "MarkItDownApiClient",
         "-n", "Lithons.MarkItDown",
         "-o", str(csharp_out),
+        "--clean-output",
+        "--exclude-backward-compatible"
     ])
     # TypeScript
     ts_out.mkdir(parents=True, exist_ok=True)
@@ -64,6 +66,8 @@ def generate_clients(openapi_path: Path, kiota_cmd: str, csharp_out: Path, ts_ou
         "-c", "MarkItDownApiClient",
         "-n", "Lithons",
         "-o", str(ts_out),
+        "--clean-output",
+        "--exclude-backward-compatible"
     ])
 
 
