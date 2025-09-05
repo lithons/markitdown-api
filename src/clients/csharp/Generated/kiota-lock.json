@@ -1,6 +1,6 @@
 {
   "descriptionHash": "F259F8358A56BA0402BCDE232C24F43B5B55DA1BE02565F9194BF2EF22B6971F6F60DB275A2FB422B33A3532256ECE99E1C04A8E2BD205A3E114114A6F18E4D8",
-  "descriptionLocation": "../../markitdown-api/openapi.json",
+  "descriptionLocation": "../../../markitdown-api/openapi.json",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.28.0",
   "clientClassName": "MarkItDownApiClient",
@@ -8,7 +8,7 @@
   "clientNamespaceName": "Lithons.MarkItDown",
   "language": "CSharp",
   "usesBackingStore": false,
-  "excludeBackwardCompatible": false,
+  "excludeBackwardCompatible": true,
   "includeAdditionalData": true,
   "disableSSLValidation": false,
   "serializers": [
