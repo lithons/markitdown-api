@@ -1,0 +1,65 @@
+﻿name: Check generated clients are up to date
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  verify-generated-clients:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - lang: CSharp
+            client_class: PythonApiClient
+            namespace: Lithons.PythonApi
+            output: src/clients/csharp
+          - lang: TypeScript
+            client_class: PythonApiClient
+            namespace: LithonsPythonApi
+            output: src/clients/TypeScript
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Kiota
+        uses: microsoft/setup-kiota@v0.5.0
+
+      - name: Install Python dependencies for OpenAPI generation
+        working-directory: src/markitdown-api
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Regenerate OpenAPI document
+        working-directory: src/markitdown-api
+        run: |
+          python -m app.tools.generate_openapi -o openapi.json
+
+      - name: Generate ${{ matrix.lang }} client
+        run: |
+          kiota generate \
+            -d src/markitdown-api/openapi.json \
+            -l ${{ matrix.lang }} \
+            -c ${{ matrix.client_class }} \
+            -n ${{ matrix.namespace }} \
+            -o ${{ matrix.output }}
+
+      - name: Fail if there are changes in generated outputs
+        run: |
+          CHANGED=$(git status --porcelain)
+          echo "Git status:\n$CHANGED"
+          if git diff --quiet -- src/clients src/markitdown-api/openapi.json; then
+            echo "No changes detected in generated clients or OpenAPI."
+          else
+            echo "Detected changes in generated clients or OpenAPI after regeneration. Please run the generation steps locally and commit the results." >&2
+            git diff -- src/clients src/markitdown-api/openapi.json >&2 || true
+            exit 1
+          fi
