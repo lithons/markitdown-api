@@ -16,7 +16,7 @@ jobs:
             output: src/clients/csharp
           - lang: TypeScript
             client_class: MarkItDownApiClient
-            namespace: MarkItDown
+            namespace: Lithons
             output: src/clients/TypeScript
     steps:
       - name: Checkout repository
