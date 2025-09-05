@@ -15,9 +15,11 @@ from app.main import app
 
 def build_schema(server_url: Optional[str] = None) -> Dict[str, Any]:
     # Include title, version, description, and optional servers for better client generation
+    # Kiota requires a servers entry; default to localhost if none provided.
     servers: Optional[List[Dict[str, str]]] = None
-    if server_url:
-        servers = [{"url": server_url.rstrip("/")}]  # avoid trailing slash issues
+    base_url = (server_url or "http://localhost:8000").strip()
+    if base_url:
+        servers = [{"url": base_url.rstrip("/")}]  # avoid trailing slash issues
     schema = get_openapi(
         title=app.title,
         version=app.version,
@@ -25,6 +27,14 @@ def build_schema(server_url: Optional[str] = None) -> Dict[str, Any]:
         routes=app.routes,
         servers=servers,
     )
+    # Post-process: Kiota doesn't support format: uri, so drop it for UrlPayload.url to reduce warnings.
+    try:
+        url_schema = schema["components"]["schemas"]["UrlPayload"]["properties"]["url"]
+        if isinstance(url_schema, dict):
+            url_schema.pop("format", None)
+    except Exception:
+        # Best effort; if structure changes, ignore silently
+        pass
     return schema
 
 

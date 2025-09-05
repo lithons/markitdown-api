@@ -109,7 +109,6 @@
       "UrlPayload": {
         "properties": {
           "url": {
-            "format": "uri",
             "maxLength": 2083,
             "minLength": 1,
             "title": "Url",
@@ -299,5 +298,10 @@
         ]
       }
     }
-  }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ]
 }
