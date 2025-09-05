@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 # Reuse existing OpenAPI generator
-from app.tools import generate_openapi as go
+from . import generate_openapi as go
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OPENAPI_PATH = REPO_ROOT / "openapi.json"
@@ -72,9 +72,9 @@ def main() -> None:
         description=(
             "Generate OpenAPI and both C# and TypeScript clients.\n\n"
             "Examples:\n"
-            "  python -m app.tools.generate_all_clients\n"
-            "  PUBLIC_BASE_URL=https://api.example.com python -m app.tools.generate_all_clients\n"
-            "  python -m app.tools.generate_all_clients --skip-openapi --openapi src/markitdown-api/openapi.json\n"
+            "  python -m app.tools.generate_clients\n"
+            "  PUBLIC_BASE_URL=https://api.example.com python -m app.tools.generate_clients\n"
+            "  python -m app.tools.generate_clients --skip-openapi --openapi src/markitdown-api/openapi.json\n"
         )
     )
     parser.add_argument("--openapi", "-d", default=str(DEFAULT_OPENAPI_PATH), help="Path to openapi.json to write/read")
