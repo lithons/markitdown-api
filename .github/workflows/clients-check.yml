@@ -13,7 +13,7 @@ jobs:
           - lang: CSharp
             client_class: MarkItDownApiClient
             namespace: Lithons.MarkItDown
-            output: src/clients/csharp
+            output: src/clients/csharp/Generated
           - lang: TypeScript
             client_class: MarkItDownApiClient
             namespace: Lithons
