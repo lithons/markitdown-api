@@ -66,7 +66,8 @@ def generate_clients(openapi_path: Path, kiota_cmd: str, csharp_out: Path, ts_ou
         "-c", "MarkItDownApiClient",
         "-n", "Lithons",
         "-o", str(ts_out),
-        "--clean-output"
+        "--clean-output",
+        "--exclude-backward-compatible"
     ])
 
 
