@@ -33,7 +33,7 @@ def ensure_kiota_available(kiota_cmd: str) -> None:
     if which(kiota_cmd) is None:
         raise RuntimeError(
             "Kiota CLI not found. Please install it and ensure it is on PATH. See https://github.com/microsoft/kiota.\n"
-            "Example: dotnet tool install --global Microsoft.Kiota.Cli or winget install Microsoft.Kiota"
+            "Example: dotnet tool install --global Microsoft.OpenApi.Kiota"
         )
 
 
