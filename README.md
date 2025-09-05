@@ -92,12 +92,24 @@ python -m app.tools.generate_openapi -o src/markitdown-api/openapi.json
 ### Generate clients with Kiota
 Prerequisites: Install the Kiota CLI. You can install it locally or rely on the GitHub Action (see below).
 
-Generate C# client:
+Generate both C# and TypeScript clients in one command (also regenerates openapi.json by default):
+```bash
+# From the repo root
+python -m app.tools.generate_all_clients
+
+# Optionally include a server URL in the OpenAPI 'servers' section
+PUBLIC_BASE_URL=https://api.example.com python -m app.tools.generate_all_clients
+
+# Skip regenerating openapi.json and use an existing file
+python -m app.tools.generate_all_clients --skip-openapi --openapi src/markitdown-api/openapi.json
+```
+
+Generate only C# client:
 ```bash
 kiota generate -d src/markitdown-api/openapi.json -l CSharp -c PythonApiClient -n Lithons.PythonApi -o src/clients/csharp
 ```
 
-Generate TypeScript client:
+Generate only TypeScript client:
 ```bash
 kiota generate -d src/markitdown-api/openapi.json -l TypeScript -c PythonApiClient -n LithonsPythonApi -o src/clients/typescript
 ```
