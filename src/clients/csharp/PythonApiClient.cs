@@ -4,7 +4,6 @@ using Lithons.PythonApi.ConvertNamespace;
 using Lithons.PythonApi.ConvertUrl;
 using Lithons.PythonApi.Health;
 using Lithons.PythonApi.SupportedFormats;
-using Lithons.PythonApi.Temp;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -44,11 +43,6 @@ namespace Lithons.PythonApi
         public global::Lithons.PythonApi.SupportedFormats.SupportedFormatsRequestBuilder SupportedFormats
         {
             get => new global::Lithons.PythonApi.SupportedFormats.SupportedFormatsRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The temp property</summary>
-        public global::Lithons.PythonApi.Temp.TempRequestBuilder Temp
-        {
-            get => new global::Lithons.PythonApi.Temp.TempRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Lithons.PythonApi.PythonApiClient"/> and sets the default values.
