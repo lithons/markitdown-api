@@ -57,6 +57,11 @@ namespace Lithons.MarkItDown
             ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
             ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
+            if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
+            {
+                RequestAdapter.BaseUrl = "http://localhost:8000";
+            }
+            PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
         }
         /// <summary>
         /// Root

@@ -46,6 +46,9 @@ export function createMarkItDownApiClient(requestAdapter: RequestAdapter) {
         serializationWriterFactory.registerDefaultSerializer(MultipartSerializationWriterFactory);
     }
     
+    if (requestAdapter.baseUrl === undefined || requestAdapter.baseUrl === null || requestAdapter.baseUrl === "") {
+        requestAdapter.baseUrl = "http://localhost:8000";
+    }
     const pathParameters: Record<string, unknown> = {
         "baseurl": requestAdapter.baseUrl,
     };
