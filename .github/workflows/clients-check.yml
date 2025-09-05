@@ -59,7 +59,8 @@ jobs:
           if git diff --quiet -- src/clients src/markitdown-api/openapi.json; then
             echo "No changes detected in generated clients or OpenAPI."
           else
-            echo "Detected changes in generated clients or OpenAPI after regeneration. Please run the generation steps locally and commit the results." >&2
-            git diff -- src/clients src/markitdown-api/openapi.json >&2 || true
+            echo "Detected changes in generated clients or OpenAPI after regeneration." >&2
+            echo "Please run the generation steps locally as documented in the README.md and commit the results." >&2
             exit 1
           fi
+
