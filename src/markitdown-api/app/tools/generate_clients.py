@@ -12,7 +12,7 @@ from . import generate_openapi as go
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OPENAPI_PATH = REPO_ROOT / "openapi.json"
-DEFAULT_CSHARP_OUT = REPO_ROOT.parent / "clients" / "csharp"
+DEFAULT_CSHARP_OUT = REPO_ROOT.parent / "clients" / "csharp" / "Generated"
 DEFAULT_TS_OUT = REPO_ROOT.parent / "clients" / "TypeScript"
 
 
