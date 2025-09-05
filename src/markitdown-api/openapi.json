@@ -298,22 +298,6 @@
           "convert"
         ]
       }
-    },
-    "/temp": {
-      "get": {
-        "operationId": "temp_temp_get",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Temp"
-      }
     }
   }
 }
