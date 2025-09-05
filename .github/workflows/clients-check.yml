@@ -11,12 +11,12 @@ jobs:
       matrix:
         include:
           - lang: CSharp
-            client_class: PythonApiClient
-            namespace: Lithons.PythonApi
+            client_class: MarkItDownApiClient
+            namespace: Lithons.MarkItDown
             output: src/clients/csharp
           - lang: TypeScript
-            client_class: PythonApiClient
-            namespace: LithonsPythonApi
+            client_class: MarkItDownApiClient
+            namespace: Lithons
             output: src/clients/TypeScript
     steps:
       - name: Checkout repository
@@ -52,7 +52,7 @@ jobs:
             -n ${{ matrix.namespace }} \
             -o ${{ matrix.output }}
 
-      - name: Fail if there are changes in generated outputs
+      - name: Check that clients have been re-generated if needed
         run: |
           CHANGED=$(git status --porcelain)
           echo "Git status:\n$CHANGED"
