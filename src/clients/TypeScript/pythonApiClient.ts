@@ -10,8 +10,6 @@ import { HealthRequestBuilderRequestsMetadata, type HealthRequestBuilder } from 
 // @ts-ignore
 import { SupportedFormatsRequestBuilderRequestsMetadata, type SupportedFormatsRequestBuilder } from './supportedFormats/index.js';
 // @ts-ignore
-import { TempRequestBuilderRequestsMetadata, type TempRequestBuilder } from './temp/index.js';
-// @ts-ignore
 import { apiClientProxifier, createUntypedNodeFromDiscriminatorValue, ParseNodeFactoryRegistry, SerializationWriterFactoryRegistry, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestAdapter, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type UntypedNode } from '@microsoft/kiota-abstractions';
 // @ts-ignore
 import { FormParseNodeFactory, FormSerializationWriterFactory } from '@microsoft/kiota-serialization-form';
@@ -74,10 +72,6 @@ export interface PythonApiClient extends BaseRequestBuilder<PythonApiClient> {
      */
     get supportedFormats(): SupportedFormatsRequestBuilder;
     /**
-     * The temp property
-     */
-    get temp(): TempRequestBuilder;
-    /**
      * Root
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UntypedNode>}
@@ -109,9 +103,6 @@ export const PythonApiClientNavigationMetadata: Record<Exclude<keyof PythonApiCl
     },
     supportedFormats: {
         requestsMetadata: SupportedFormatsRequestBuilderRequestsMetadata,
-    },
-    temp: {
-        requestsMetadata: TempRequestBuilderRequestsMetadata,
     },
 };
 /**
