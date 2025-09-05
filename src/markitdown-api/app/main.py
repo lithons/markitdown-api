@@ -1,6 +1,5 @@
 ﻿# app/main.py
 from fastapi import FastAPI, Request
-from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
 from scalar_fastapi import get_scalar_api_reference
 from starlette.middleware.trustedhost import TrustedHostMiddleware
@@ -62,12 +61,6 @@ async def root():
 async def health_check():
     return {"status": "healthy", "service": settings.APP_NAME}
 
-# Write the open-api spec to a file.
-with open("openapi.json", "w", encoding="utf-8") as f:
-    import json
-    json.dump(get_openapi(
-        title=app.title, version=app.version, routes=app.routes
-    ), f, ensure_ascii=False, indent=2)
 
 # Dev-only entrypoint. In prod, launch via CLI (see below).
 if __name__ == "__main__":
