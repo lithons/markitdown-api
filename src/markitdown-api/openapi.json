@@ -1,228 +1,70 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "MarkItDown REST API",
-    "version": "1.0.0"
-  },
-  "paths": {
-    "/convert": {
-      "post": {
-        "tags": [
-          "convert"
-        ],
-        "summary": "Convert Document",
-        "operationId": "convert_document_convert_post",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_convert_document_convert_post"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConvertFileResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/convert-url": {
-      "post": {
-        "tags": [
-          "convert"
-        ],
-        "summary": "Convert From Url",
-        "operationId": "convert_from_url_convert_url_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlPayload"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConvertUrlResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/supported-formats": {
-      "get": {
-        "tags": [
-          "convert"
-        ],
-        "summary": "Get Supported Formats",
-        "operationId": "get_supported_formats_supported_formats_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SupportedFormatsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/": {
-      "get": {
-        "summary": "Root",
-        "operationId": "root__get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/temp": {
-      "get": {
-        "summary": "Temp",
-        "operationId": "temp_temp_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/health": {
-      "get": {
-        "summary": "Health Check",
-        "operationId": "health_check_health_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
       "Body_convert_document_convert_post": {
         "properties": {
           "file": {
-            "type": "string",
             "format": "binary",
-            "title": "File"
+            "title": "File",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "file"
         ],
-        "title": "Body_convert_document_convert_post"
+        "title": "Body_convert_document_convert_post",
+        "type": "object"
       },
       "ConvertFileResponse": {
         "properties": {
           "filename": {
-            "type": "string",
-            "title": "Filename"
-          },
-          "size": {
-            "type": "integer",
-            "title": "Size"
+            "title": "Filename",
+            "type": "string"
           },
           "markdown": {
-            "type": "string",
-            "title": "Markdown"
+            "title": "Markdown",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "integer"
           },
           "status": {
-            "type": "string",
+            "default": "success",
             "title": "Status",
-            "default": "success"
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "filename",
           "size",
           "markdown"
         ],
-        "title": "ConvertFileResponse"
+        "title": "ConvertFileResponse",
+        "type": "object"
       },
       "ConvertUrlResponse": {
         "properties": {
-          "url": {
-            "type": "string",
-            "title": "Url"
-          },
           "markdown": {
-            "type": "string",
-            "title": "Markdown"
+            "title": "Markdown",
+            "type": "string"
           },
           "status": {
-            "type": "string",
+            "default": "success",
             "title": "Status",
-            "default": "success"
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "url",
           "markdown"
         ],
-        "title": "ConvertUrlResponse"
+        "title": "ConvertUrlResponse",
+        "type": "object"
       },
       "HTTPValidationError": {
         "properties": {
@@ -230,22 +72,15 @@
             "items": {
               "$ref": "#/components/schemas/ValidationError"
             },
-            "type": "array",
-            "title": "Detail"
+            "title": "Detail",
+            "type": "array"
           }
         },
-        "type": "object",
-        "title": "HTTPValidationError"
+        "title": "HTTPValidationError",
+        "type": "object"
       },
       "SupportedFormatsResponse": {
         "properties": {
-          "supported_formats": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Supported Formats"
-          },
           "note": {
             "anyOf": [
               {
@@ -256,29 +91,36 @@
               }
             ],
             "title": "Note"
+          },
+          "supported_formats": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Supported Formats",
+            "type": "array"
           }
         },
-        "type": "object",
         "required": [
           "supported_formats"
         ],
-        "title": "SupportedFormatsResponse"
+        "title": "SupportedFormatsResponse",
+        "type": "object"
       },
       "UrlPayload": {
         "properties": {
           "url": {
-            "type": "string",
+            "format": "uri",
             "maxLength": 2083,
             "minLength": 1,
-            "format": "uri",
-            "title": "Url"
+            "title": "Url",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "url"
         ],
-        "title": "UrlPayload"
+        "title": "UrlPayload",
+        "type": "object"
       },
       "ValidationError": {
         "properties": {
@@ -293,25 +135,184 @@
                 }
               ]
             },
-            "type": "array",
-            "title": "Location"
+            "title": "Location",
+            "type": "array"
           },
           "msg": {
-            "type": "string",
-            "title": "Message"
+            "title": "Message",
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "title": "Error Type"
+            "title": "Error Type",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "loc",
           "msg",
           "type"
         ],
-        "title": "ValidationError"
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Convert documents to Markdown using Microsoft's MarkItDown library",
+    "title": "MarkItDown REST API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Root"
+      }
+    },
+    "/convert": {
+      "post": {
+        "operationId": "convert_document_convert_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_convert_document_convert_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConvertFileResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Convert Document",
+        "tags": [
+          "convert"
+        ]
+      }
+    },
+    "/convert-url": {
+      "post": {
+        "operationId": "convert_from_url_convert_url_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UrlPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConvertUrlResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Convert From Url",
+        "tags": [
+          "convert"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health Check"
+      }
+    },
+    "/supported-formats": {
+      "get": {
+        "operationId": "get_supported_formats_supported_formats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportedFormatsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Supported Formats",
+        "tags": [
+          "convert"
+        ]
+      }
+    },
+    "/temp": {
+      "get": {
+        "operationId": "temp_temp_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Temp"
       }
     }
   }
