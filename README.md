@@ -1,5 +1,8 @@
 ﻿# MarkItDown REST API Docker Container
 
+> [!WARNING]
+> This project is a work in progress, and is not feature complete or tested in production.
+
 A containerized REST API for Microsoft's MarkItDown library that converts various document formats to Markdown.
 
 ## Features
