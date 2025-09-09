@@ -6,3 +6,4 @@ pydantic-settings
 markitdown
 uvicorn
 python-multipart
+gunicorn

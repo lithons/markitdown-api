@@ -34,6 +34,8 @@ You can run the API locally with Python or via Docker.
 
 2. Or use Docker Compose:
    - docker compose -f src/markitdown-api/docker-compose.yml up --build
+   - docker compose -f src/markitdown-api/docker-compose.development.yml up --build  
+     _(builds and runs from your local source code, not a remote registry)_
 
 3. Or build and run the Docker image manually:
    - docker build -t markitdown-api src/markitdown-api
@@ -76,6 +78,7 @@ curl -X POST "http://localhost:8000/convert-url" \
 - ENV: development|staging|production (affects CORS and trusted hosts)
 - PUBLIC_BASE_URL: optional public URL (e.g., https://api.example.com) used for docs server URL and TrustedHost in production
 - CORS_ORIGINS: comma-separated list of origins allowed for CORS
+- ENABLE_SCALAR: enable or disable Scalar UI/docs (default: `true`)
 
 ## Requirements
 

@@ -43,14 +43,15 @@ if settings.ENV == "production" and settings.PUBLIC_BASE_URL:
 # Routes
 app.include_router(converter_router)
 
-@app.get("/scalar", include_in_schema=False)
-async def scalar_html(request: Request):
-    server_url = str(settings.PUBLIC_BASE_URL or request.base_url).rstrip("/")
-    return get_scalar_api_reference(
-        openapi_url=app.openapi_url,
-        title=app.title,
-        servers=[{"url": server_url, "description": f"{settings.ENV.capitalize()} server"}],
-    )
+if settings.ENABLE_SCALAR:
+    @app.get("/scalar", include_in_schema=False)
+    async def scalar_html(request: Request):
+        server_url = str(settings.PUBLIC_BASE_URL or request.base_url).rstrip("/")
+        return get_scalar_api_reference(
+            openapi_url=app.openapi_url,
+            title=app.title,
+            servers=[{"url": server_url, "description": f"{settings.ENV.capitalize()} server"}],
+        )
 
 # Meta & health
 @app.get("/")
