@@ -22,7 +22,7 @@ You can run the API locally with Python or via Docker.
    - From the repo root, create and activate a virtual environment, then install deps:
      - Windows (PowerShell):
        - python -m venv .venv
-       - .\.venv\Scripts\Activate.ps1
+       - ./.venv/Scripts/Activate.ps1
        - pip install -r src/markitdown-api/requirements.txt
      - macOS/Linux:
        - python3 -m venv .venv
