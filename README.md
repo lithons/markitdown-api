@@ -78,6 +78,7 @@ curl -X POST "http://localhost:8000/convert-url" \
 - ENV: development|staging|production (affects CORS and trusted hosts)
 - PUBLIC_BASE_URL: optional public URL (e.g., https://api.example.com) used for docs server URL and TrustedHost in production
 - CORS_ORIGINS: comma-separated list of origins allowed for CORS
+- ENABLE_SCALAR: enable or disable Scalar UI/docs (default: `true`)
 
 ## Requirements
 

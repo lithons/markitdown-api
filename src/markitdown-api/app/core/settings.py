@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: List[AnyHttpUrl] = Field(default_factory=list)
 
+    # Features
+    ENABLE_SCALAR: bool = True
+
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
 settings = Settings()
