@@ -1,0 +1,9 @@
+﻿services:
+  markitdown-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ENV: "development"
+    ports:
+      - "8000:8000"
